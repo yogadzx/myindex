@@ -2,10 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <title>Title</title>
+    <style>
+        body,header,footer,h1,h2,h3,h4,h5,h6,a{
+            margin: 0;
+            text-decoration: none;
+        }
+        body{
+            -webkit-text-size-adjust: none;
+            -moz-text-size-adjust: none;
+            -ms-text-size-adjust: none;
+            text-size-adjust:none;
+        }
+        #pageHeader{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+        }
+        #pageTitle{
+            height: 60px;
+            margin: 0;
+            padding-left: 8px;
+            background: #0099FF;
+            font-size: 22px;
+            line-height: 60px;
+            color: #fff;
+            cursor: default;
+        }
+        #pageNav{
+            height: 40px;
+            margin: 0;
+            background: #FFAD33;
+        }
+        .nav{
+            display: inline-block;
+            height: 40px;
+            width: 100px;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        .nav:hover{
+            background: #EE8F00;
+        }
+        .coderegin{
+            margin: 10px 0;
+            padding: 10px;
+            border: 4px solid #7e7e7e;
+            border-radius: 8px;
+            background: #2e2e2e;
+            font-size: 14px;
+            line-height: 20px;
+            color: green;
+        }
+        #pageContent{
+            width: 80%;
+            margin: 120px 10% 0;
+        }
+        .passage-name{
+            font-size: 20px;
+            line-height: 30px;
+        }
+        .passage-title{
+            font-size: 18px;
+            line-height: 30px;
+        }
+        .passage-content{
+            margin-bottom: 10px;
+            font-size: 14px;
+            line-height: 30px;
+        }
+        .other{
+            color: red;
+        }
+        #pageFooter{
+            display: inline-block;
+            width: 100%;
+            height: 40px;
+            margin: 0;
+            background: #0099FF;
+            font-size: 14px;
+            text-align: center;
+            line-height: 20px;
+            cursor: default;
+        }
+        .icp{
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h3>Hello world Dzx</h3>
-    <h5>This in Dev</h5>
+    <header id="pageHeader">
+        <h3 id="pageTitle">Hello world !</h3>
+        <nav id="pageNav">
+            <a class="nav">Git 归纳</a>
+        </nav>
+    </header>
+    <div id="pageContent">
+        <section id="git" class="passage">
+            <h4 class="passage-name">Git 简单归纳</h4>
+            <h5 class="passage-title">git 初始化</h5>
+            <div class="passage-content">
+                新建项目后，使用 terminal 在项目根目录下:
+                <div class="coderegin">
+                   $ git init
+                </div>
+                进行 git 代码仓库初始化，此目录下会新建 .git 目录,此时本地 git 初始化完成。
+            </div>
+            <h5 class="passage-title">git 常用命令</h5>
+            <div class="passage-content">
+                git add（ 将修改文件添加到暂存区 ）<br>
+                git commit（ 提交本次修改，将暂存区合并到分支，-m"do something" 引号里面输入本次提交所更改到内容描述 ）<br>
+                git checkout + 分支名称（ 切换到输入名称分支，git checkout -b 名称= git branch 名称 + git checkout 名称 ）<br>
+                git checkout + 文件名（ 将该文件未add 的内容还原到上一次commit后 ）<br>
+                git branch 查看项目本地分支（ -a 查看本地和远程分支 ）<br>
+                git branch +名称（ 创建名称为...的新分支 ）<br>
+                git log （ 查看每次commit的信息 ）<br>
+                git reset --hard commit id （ 每次提交的id使用git log查看 ）<br>
+                git status （ 查看工作区暂存区状态 ）<br>
+                git push （ 将提交合并至远程仓库 ）<br>
+                git pull （ 从远程仓库更新提交内容 ）<br>
+            </div>
+            <h5 class="passage-title">git 缩写命令</h5>
+            <div class="passage-content">
+                每个项目初始化后，会在项目的根目录下创建 .git 目录，进入目录使用文档编辑器打开 config 文件，如果没有 [alias] ，在最后一行新加 [alias] ，输入你想要缩写的单词例如：<br>
+                <div class="coderegin">
+
+                    [core]
+                    ...
+
+                    [alias]
+                    co = checkout <br>
+                    ci = commit <br>
+                    br = branch <br>
+                    st = status <br>
+                    ... <br>
+
+                </div>
+                保存，注意 ⚠️本次修改只限于当前项目。每个项目都有自己的 .git 目录。
+            </div>
+            <h5 class="passage-title">git 创建远程仓库</h5>
+            <div class="passage-content">
+                以 <a class="other" href="https://github.com">github</a> 作为远程仓库为例 <br>
+                首先确定本机是否有 ssh key (安全外壳协议),在Users／（ 用户名 ）／下是否存在 .ssh 目录？<br>
+                如果存在证明本机存在ssh key，如果没有该目录说明本机还未创建ssh，使用:
+                <div class="coderegin">
+                    $ ssh-keygen -t rsa -C "youremail@example.com"
+                </div>
+                经过三次回车后，进入User／（ 用户名 ）／.ssh 目录，一个名称为 id_rsa 的文件是私有秘钥，一个名称为 id_rsa.pub 的文件是公共秘钥，添加 sshkey 时请使用公共秘钥，私有秘钥泄漏会增加您信息的风险。<br>
+                打开 <a class="other" href="https://github.com">github</a> 登陆你的github后，点击头像在列表中选中 settings 。<br>
+                在左侧列表选中 SSH and GPG keys，找到SSH keys 区域，点击 New SSH key 按钮，弹出如下输入框:<br>
+                Title ：[ 任意输入 （ 能够描述当前用户 ）]<br>
+                Key   ：[ 将 id_rsa.pub 文件全部复制到这里。]<br>
+                点击 Add SSH key ，完成！本台计算机有权访问 github 仓库。<br>
+                现在创建一个 github 仓库。<br>
+                点击 github 头像旁的 + ，在弹出列表中选择 New repository ，输入 Repository name <br>
+                有两种方法进行本地与远程同步：<br>
+                <br>
+                1.本地项目在 github 上新建仓库 <br>
+                不需要勾选 Initialize this repository with a README 。 <br>
+                2.github 新建项目，克隆到本地 <br>
+                勾选 Initialize this repository with a README 。<br>
+                <br>
+                选择适合的方法后，点击 Create repository （ 默认为公共仓库，其他人可见，私有仓库请选择 Private 并支付money ）。根据所选择的方法不同，点击按钮后分为对应的两种步骤。<br>
+                1.本地项目在 github 上新建仓库，Terminal 本地项目位置，输入例如：<br>
+                <div class="coderegin">
+                    git remote add origin https://github.com/github用户名/Repositoryname仓库名称.git <br>
+                    git push -u origin master
+                </div>
+                2.github 新建项目，克隆到本地，Terminal 项目目标位置，输入github项目中绿色按钮" Clone or download "的内容，例如：<br>
+                <div class="coderegin">
+                    git clone https://github.com/github用户名/Repositoryname仓库名称.git
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer id="pageFooter">
+        Powerd & Designed by Dzx <br>
+        <!--Copyright© 企鹅小宝与北极大熊 <br>-->
+        <a class="icp" href="http://www.miibeian.gov.cn/">京ICP备16015462号</a>
+    </footer>
 </body>
 </html>
